@@ -2,6 +2,7 @@
 """ 
 
 """
+
 import xlsxwriter
 from argparse import ArgumentParser
 import sys
@@ -10,17 +11,8 @@ import pandas as pd
 
 
 from sklearn.model_selection import train_test_split, cross_val_score, validation_curve
-
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler
-from sklearn.naive_bayes import MultinomialNB
-
-from sklearn.model_selection import RepeatedStratifiedKFold
-from sklearn.model_selection import GridSearchCV
-from sklearn.svm import SVC
-from sklearn.linear_model import RidgeClassifier
-
 
 class IdbmTextClassifier():
     
@@ -55,8 +47,11 @@ if __name__ == "__main__":
     args = parser.parse_args(sys.argv[1:])
     
     file_use = IdbmTextClassifier(args.file1, args.file2)
+    file_use.training_data()
     
-    print(file_use.training_data())
-    
+    if file_use.training_data == 0:
+        print("We predict that this review is negative")
+    else:
+        print("we predict that this review is postive")
     
         
